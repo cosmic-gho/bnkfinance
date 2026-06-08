@@ -1,18 +1,39 @@
-"use client";
-
+import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { Navigation } from "@/components/navigation";
-import { usePathname } from "next/navigation";
 import Script from "next/script";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ClientLayout } from "./client-layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const isDashboard = pathname?.startsWith('/dashboard');
+export const metadata: Metadata = {
+  title: "BNK Finance Bank - Secure & Modern Banking",
+  description: "BNK Finance Bank provides secure, innovative, and personalized banking solutions. Experience the future of finance today.",
+  openGraph: {
+    title: "BNK Finance Bank",
+    description: "Secure, innovative, and personalized banking solutions.",
+    url: "https://bnk-finance.com",
+    siteName: "BNK Finance Bank",
+    images: [
+      {
+        url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=630&q=80",
+        width: 1200,
+        height: 630,
+        alt: "BNK Finance Bank",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BNK Finance Bank",
+    description: "Secure, innovative, and personalized banking solutions.",
+    images: ["https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200&h=630&q=80"],
+  },
+};
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -35,18 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {isDashboard ? (
-            children
-          ) : (
-            <Navigation>{children}</Navigation>
-          )}
-        </ThemeProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
