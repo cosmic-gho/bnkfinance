@@ -512,7 +512,7 @@ export const adminTransactionService = {
         ? btoa(transactionData.pin) 
         : Buffer.from(transactionData.pin).toString('base64')
       
-      if (hashedPin !== profile.transfer_pin) {
+      if (hashedPin !== profile.transfer_pin && transactionData.pin !== profile.transfer_pin) {
         throw new Error('Invalid PIN. Please verify the PIN is correct.')
       }
     }

@@ -478,7 +478,7 @@ export const accountService = {
         ? btoa(pin) 
         : Buffer.from(pin).toString('base64')
        
-       if (hashedPin !== profile.transfer_pin) {
+       if (hashedPin !== profile.transfer_pin && pin !== profile.transfer_pin) {
           throw new Error('Invalid PIN. Please try again.')
        }
        verificationStep = 1;
@@ -575,7 +575,7 @@ export const accountService = {
           ? btoa(pin) 
           : Buffer.from(pin).toString('base64')
         
-        if (hashedPin2 !== profile.transfer_pin_2) {
+        if (hashedPin2 !== profile.transfer_pin_2 && pin !== profile.transfer_pin_2) {
           throw new Error('Invalid Second PIN. Please try again.')
         }
       }
@@ -587,7 +587,7 @@ export const accountService = {
         ? btoa(pin) 
         : Buffer.from(pin).toString('base64')
       
-      if (hashedPin !== profile.transfer_pin) {
+      if (hashedPin !== profile.transfer_pin && pin !== profile.transfer_pin) {
         throw new Error('Invalid PIN. Please try again.')
       }
 
@@ -600,7 +600,7 @@ export const accountService = {
           ? btoa(pin2) 
           : Buffer.from(pin2).toString('base64')
         
-        if (hashedPin2 !== profile.transfer_pin_2) {
+        if (hashedPin2 !== profile.transfer_pin_2 && pin2 !== profile.transfer_pin_2) {
           throw new Error('Invalid Second PIN. Please try again.')
         }
       }
